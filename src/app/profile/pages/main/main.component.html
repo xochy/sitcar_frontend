@@ -1,0 +1,40 @@
+<mat-card class="example-card placeholder-glow">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ user.attributes.name }}</mat-card-title>
+        <mat-card-subtitle *ngIf="roles.length > 0; else rolesPlaceholder">{{
+            roles[0].attributes.display_name
+        }}</mat-card-subtitle>
+        <ng-template #rolesPlaceholder
+            ><span class="placeholder w-100 ms-auto"></span
+        ></ng-template>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>
+            <mat-list role="list">
+                <mat-list-item role="listitem"
+                    >Email: {{ user.attributes.email }}</mat-list-item
+                >
+                <mat-list-item role="listitem"
+                    >Registrado:
+                    {{
+                        user.attributes.created_at
+                            | amLocale: "es"
+                            | amDateFormat: "MMMM Do YYYY"
+                    }}</mat-list-item
+                >
+            </mat-list>
+        </p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button
+            class="hover-effect navy-blue-btn"
+            mat-raised-button
+            matTooltip="Cerrar sesión"
+            (click)="logout()"
+        >
+            <mat-icon class="icon-display-btn">logout</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

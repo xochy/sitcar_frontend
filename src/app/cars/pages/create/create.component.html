@@ -1,0 +1,105 @@
+<form
+    #formDirective="ngForm"
+    autocomplete="off"
+    [formGroup]="carForm"
+    (ngSubmit)="create()"
+>
+    <mat-card class="mat-elevation-z8">
+        <mat-card-header>
+            <mat-card-title>Registrar nuevo vehículo</mat-card-title>
+            <mat-card-subtitle
+                >Los campos marcados con * son obligatorios</mat-card-subtitle
+            >
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="w-100 mb-3" appearance="fill">
+                        <mat-label>Nombre</mat-label>
+                        <input
+                            id="name"
+                            type="text"
+                            matInput
+                            formControlName="name"
+                            placeholder="Ej. Spark"
+                            required
+                        />
+                        <mat-error *ngIf="invalidField('name')">
+                            {{ errorMessage("name", "nombre") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100 mb-3" appearance="fill">
+                        <mat-label>Fabricante</mat-label>
+                        <input
+                            id="trademark"
+                            type="text"
+                            matInput
+                            formControlName="trademark"
+                            placeholder="Ej. Chevrolet"
+                            required
+                        />
+                        <mat-error *ngIf="invalidField('trademark')">
+                            {{ errorMessage("trademark", "fabricante") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Precio</mat-label>
+                        <input
+                            id="price"
+                            type="text"
+                            matInput
+                            formControlName="price"
+                            prefix="$"
+                            mask="separator.2"
+                            thousandSeparator=","
+                            placeholder="Ej. $300,000"
+                            required
+                        />
+                        <mat-error *ngIf="invalidField('price')">
+                            {{ errorMessage("price", "precio") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Año</mat-label>
+                        <input
+                            id="year"
+                            type="text"
+                            matInput
+                            formControlName="year"
+                            mask="0000"
+                            placeholder="Ej. 2020"
+                            required
+                        />
+                        <mat-error *ngIf="invalidField('year')">
+                            {{ errorMessage("year", "año") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end" class="px-2">
+            <button
+                class="hover-effect navy-blue-btn"
+                mat-raised-button
+                matTooltip="{{ textButton }}"
+                [disabled]="loading"
+            >
+                {{ textButton }}
+            </button>
+        </mat-card-actions>
+        <mat-card-footer>
+            <mat-progress-bar
+                mode="indeterminate"
+                *ngIf="loading"
+            ></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+</form>

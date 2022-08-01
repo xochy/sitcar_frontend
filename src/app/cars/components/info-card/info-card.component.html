@@ -1,0 +1,16 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>Inventario de autos</mat-card-title>
+        <mat-card-subtitle>Información general</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions align="end" *ngIf="canRegister">
+        <button
+            class="hover-effect navy-blue-btn"
+            mat-raised-button
+            matTooltip="Registrar vehículo"
+            (click)="create()"
+        >
+            <mat-icon class="icon-display-btn">add</mat-icon> Registrar vehículo
+        </button>
+    </mat-card-actions>
+</mat-card>

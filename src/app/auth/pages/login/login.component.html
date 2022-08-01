@@ -1,0 +1,112 @@
+<div class="container center-content bg-image">
+    <div class="row align-items-center" style="background-color: white">
+        <div class="col">
+            <img
+                src="/../../assets/images/undraw_authentication_re_svpt.svg"
+                alt="ILCE"
+                class="responsive"
+            />
+        </div>
+        <div class="col">
+            <form
+                autocomplete="off"
+                [formGroup]="loginForm"
+                (ngSubmit)="login()"
+            >
+                <mat-card class="mat-elevation-z0">
+                    <mat-card-title>Formulario de ingreso</mat-card-title>
+                    <mat-card-subtitle
+                        >Los campos marcados con * son
+                        obligatorios</mat-card-subtitle
+                    >
+                    <mat-card-content>
+                        <mat-form-field class="w-100 mb-3" appearance="fill">
+                            <mat-label>Correo Electrónico</mat-label>
+                            <input
+                                type="email"
+                                matInput
+                                formControlName="email"
+                                placeholder="Ex. pat@example.com"
+                                required
+                            />
+                            <mat-error *ngIf="invalidField('email')">
+                                {{
+                                    errorMessage("email", "correo electrónico")
+                                }}
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="w-100" appearance="fill">
+                            <mat-label>Contraseña</mat-label>
+                            <input
+                                matInput
+                                [type]="hide ? 'password' : 'text'"
+                                formControlName="password"
+                                required
+                            />
+                            <button
+                                mat-icon-button
+                                matSuffix
+                                (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide"
+                            >
+                                <mat-icon>{{
+                                    hide ? "visibility_off" : "visibility"
+                                }}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="invalidField('password')">
+                                {{ errorMessage("password", "contraseña") }}
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="row">
+                            <div class="col">
+                                <mat-checkbox
+                                    formControlName="remember"
+                                    color="primary"
+                                    class="fw-bold"
+                                    >Recuérdame</mat-checkbox
+                                >
+                            </div>
+                            <div class="col" align="right">
+                                <a
+                                    [routerLink]="['/auth/forgot-password']"
+                                    class="fw-bold"
+                                    >Olvidé mi contraseña</a
+                                >
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button
+                            class="w-100 hover-effect navy-blue-btn"
+                            mat-raised-button
+                            type="submit"
+                            [disabled]="loading"
+                        >
+                            Ingresar
+                        </button>
+                        <div class="login-or">
+                            <hr class="hr-or" />
+                            <span class="span-or">ó</span>
+                        </div>
+                        <a
+                            [routerLink]="['/auth/register']"
+                            class="w-100 mx-0"
+                            color="primary"
+                            mat-stroked-button
+                            [disabled]="loading"
+                        >
+                            Registrarse
+                        </a>
+                    </mat-card-actions>
+                    <mat-card-footer>
+                        <mat-progress-bar
+                            mode="indeterminate"
+                            *ngIf="loading"
+                        ></mat-progress-bar>
+                    </mat-card-footer>
+                </mat-card>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.center-content {
+    /* Center and scale the image nicely */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60vw;
+    height: 40vw;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none; /* no underline */
+}
+
+/* ----------------------------- login or style ----------------------------- */
+
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: rgb(95, 95, 95);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+}
+.hr-or {
+    background-color: #707070;
+    height: 2px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

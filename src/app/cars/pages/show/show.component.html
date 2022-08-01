@@ -1,0 +1,46 @@
+<div class="position-absolute top-50 start-50 translate-middle" *ngIf="!car">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="row mt-4" *ngIf="car">
+    <mat-card class="example-card mat-elevation-z8">
+        <mat-card-title-group>
+            <mat-card-title class="m-lg-3">{{ car.attributes.name | titlecase }}</mat-card-title>
+            <mat-card-subtitle
+                ><mat-list>
+                    <mat-list-item>
+                        Fabricante: {{ car.attributes.trademark }}
+                    </mat-list-item>
+                    <mat-divider inset></mat-divider>
+                    <mat-list-item>
+                        Año: {{ car.attributes.year }}
+                    </mat-list-item>
+                    <mat-divider inset></mat-divider>
+                    <mat-list-item>
+                        <app-price-cell
+                            [priceMX]="car.attributes.price"
+                        ></app-price-cell>
+                    </mat-list-item> </mat-list
+            ></mat-card-subtitle>
+            <img mat-card-xl-image src="https://picsum.photos/300/300" />
+        </mat-card-title-group>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+            <button
+                *ngIf="!car.attributes.sold && canBuy; else soldCar"
+                class="hover-effect navy-blue-btn m-lg-3"
+                mat-raised-button
+                matTooltip="Comprar"
+                (click)="buy()"
+            >
+                <mat-icon class="icon-display-btn">shopping_bag</mat-icon> Comprar
+            </button>
+            <ng-template #soldCar
+            ><div class="m-lg-3">
+                <span>El vehículo ha sido vendido o no puede ser comprado por el tipo de usuario.</span>
+            </div></ng-template>
+        </mat-card-actions>
+        <mat-card-footer>
+            <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+</div>

@@ -1,1 +1,148 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+$btn-navy-blue: #0762c8;
+$btn-light-blue: #0057a8;
+$btn-yellow: #fedb00;
+$font-white: #ffffff;
+$font-blue: #002f6c;
+
+$header-gray: #adcee0;
+
+.navy-blue-btn {
+    color: $font-white;
+    background: $btn-navy-blue;
+}
+
+.light-blue-btn {
+    color: $font-white;
+    background: $btn-light-blue;
+}
+
+.hover-effect:hover {
+    color: $font-blue;
+    background: $btn-yellow;
+}
+
+.selected-effect {
+    color: $font-blue;
+    background: $btn-yellow;
+}
+
+.light-blue {
+    background: $btn-light-blue;
+}
+
+.navy-blue {
+    background: $btn-navy-blue;
+}
+
+.yellow-icon {
+    color: $btn-yellow;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+
+//* ------------------------------ Notifications ----------------------------- */
+
+.success-snackbar {
+    background: #13b174;
+    color: black;
+}
+
+.error-snackbar {
+    background: #b12b13;
+    color: black;
+}
+
+.info-snackbar {
+    background: #1384b1;
+    color: white;
+}
+
+.warning-snackbar {
+    background: #b1ae13;
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+//* ------------------------------- Data table ------------------------------- */
+
+/* Structure */
+.data-container {
+    position: relative;
+}
+
+.data-table-container {
+    position: relative;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.data-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-rate-limit-reached {
+    max-width: 360px;
+    text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+    max-width: 64px;
+}
+
+.mat-column-created {
+    max-width: 124px;
+}
+
+//* ----------------------------- Expansion panel ---------------------------- */
+
+.mat-expansion-headers-align .mat-expansion-panel-header-title,
+.mat-expansion-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+
+.mat-expansion-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-expansion-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+}
+
+//* ---------------------------------- Icons --------------------------------- */
+
+.icon-display-btn {
+    transform: scale(0.9);
+}
+
+.material-symbols-rounded {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+

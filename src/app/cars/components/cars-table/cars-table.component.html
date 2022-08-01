@@ -1,0 +1,147 @@
+<div class="data-container mat-elevation-z8">
+    <div
+        class="data-loading-shade"
+        *ngIf="isLoadingResults || isRateLimitReached"
+    >
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="data-rate-limit-reached" *ngIf="isRateLimitReached">
+            El límite de respuestas del servidor ha sido alcanzado. Se
+            restaurará en un minuto.
+        </div>
+    </div>
+
+    <div class="data-table-container">
+        <mat-card class="my-2 mat-elevation-z0">
+            <mat-card-title>Lista de vehículos</mat-card-title>
+            <mat-card-subtitle>Filtros de búsqueda</mat-card-subtitle>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field appearance="standard" class="w-100">
+                            <mat-label
+                                >Buscar por nombre o fabricante...</mat-label
+                            >
+                            <input
+                                matInput
+                                (keyup)="applyFilter($event)"
+                                placeholder="Ejemplo: Honda Civic..."
+                                #input
+                            />
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <table
+            mat-table
+            [dataSource]="dataSource"
+            class="data-table"
+            matSort
+            matSortActive="name"
+            matSortDisableClear
+            matSortDirection="asc"
+        >
+            <!-- Car Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nombre
+                </th>
+                <td mat-cell *matCellDef="let car">
+                    {{ car.attributes.name | titlecase }}
+                </td>
+            </ng-container>
+
+            <!-- Car Trademark Column -->
+            <ng-container matColumnDef="trademark">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Fabricante
+                </th>
+                <td mat-cell *matCellDef="let car">
+                    {{ car.attributes.trademark }}
+                </td>
+            </ng-container>
+
+            <!-- Car Year Column -->
+            <ng-container matColumnDef="year">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Año</th>
+                <td mat-cell *matCellDef="let car">
+                    {{ car.attributes.year }}
+                </td>
+            </ng-container>
+
+            <!-- Car Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Precio
+                </th>
+                <td mat-cell *matCellDef="let car">
+                    <app-price-cell
+                        [priceMX]="car.attributes.price"
+                    ></app-price-cell>
+                </td>
+            </ng-container>
+
+            <!-- Car Sold Column -->
+            <ng-container matColumnDef="sold">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Estado
+                </th>
+                <td mat-cell *matCellDef="let car">
+                    {{ car.attributes.sold ? "Vendido" : "En venta" }}
+                </td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let car">
+                    <button
+                        matTooltip="Acciones"
+                        mat
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                    >
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button
+                            mat-menu-item
+                            [routerLink]="['/cars/show', car.id]"
+                        >
+                            Ver detalles
+                        </button>
+                        <button
+                            *ngIf="canEdit"
+                            mat-menu-item
+                            [routerLink]="['/cars/edit', car.id]"
+                        >
+                            Editar
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">
+                    No se econtró información que coincida con "{{
+                        input.value
+                    }}"
+                </td>
+            </tr>
+        </table>
+
+        <mat-paginator
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            [length]="resultsLength"
+            aria-label="Seleccione la página de vehículos"
+            showFirstLastButtons
+            itemsPerPageLabel="Vehículos por página"
+        ></mat-paginator>
+    </div>
+</div>

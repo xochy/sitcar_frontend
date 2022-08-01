@@ -1,0 +1,34 @@
+<mat-toolbar class="navy-blue px-0">
+    <!-- <button mat-button class="fs-3" [routerLink]="['./home']">ILCE</button> -->
+    <button
+        class="w-100 h-100 hover-effect light-blue-btn"
+        mat-button
+        *ngFor="let item of navbarItems"
+        [routerLink]="[item.route]"
+        routerLinkActive="selected-effect"
+    >
+        <mat-icon>{{ item.icon }}</mat-icon>
+        {{ item.text }}
+    </button>
+    <div *ngIf="currentUser.data" class="h-100 w-100">
+        <button
+            [ngClass]="{ 'selected-effect': isDirectoryPath }"
+            class="w-100 h-100 hover-effect light-blue-btn active"
+            mat-button
+            [matMenuTriggerFor]="menu"
+        >
+            <mat-icon>person</mat-icon>
+            {{ currentUser.data.attributes.name }}
+        </button>
+        <mat-menu #menu="matMenu">
+            <button
+                mat-menu-item
+                *ngFor="let item of userItems"
+                [routerLink]="[item.route]"
+            >
+                {{ item.text }}
+            </button>
+            <button mat-menu-item (click)="logout()">Salir</button>
+        </mat-menu>
+    </div>
+</mat-toolbar>

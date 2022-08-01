@@ -1,0 +1,2 @@
+{{ isUSDPrice ? (price | currency: "USD") : (price | currency: "MXN") }}
+<mat-slide-toggle (change)="onToggle($event)">USD</mat-slide-toggle>
