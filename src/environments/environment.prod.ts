@@ -1,8 +1,8 @@
 export const environment = {
     production: true,
 
-    baseUrl: 'https://sitcar.herokuapp.com/api/v1',
-    storageUrl: 'https://sitcar.herokuapp.com/storage/',
+    baseUrl: 'https://sitcarbackend.herokuapp.com/api/v1',
+    storageUrl: 'https://sitcarbackend.herokuapp.com//storage/',
 
     currencyURL:
         'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno',
