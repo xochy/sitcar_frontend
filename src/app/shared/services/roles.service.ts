@@ -11,10 +11,12 @@ import { Role, RolesResponse } from '../interfaces/role.interface';
 export class RolesService {
     private baseUrl: string = environment.baseUrl;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
-    getRolesByRelatedUrl(rolesUrl: string): Observable<RolesResponse | any> {
-        return this.http.get<RolesResponse>(rolesUrl).pipe(
+    // 'http://sitcar.test/api/v1/users/1c0a4a27-a559-42fe-a6db-db95a1c6e493/roles';
+
+    getRolesByRelatedUrl(userId: string): Observable<RolesResponse | any> {
+        return this.http.get<RolesResponse>(`${this.baseUrl}/users/${userId}/roles`).pipe(
             map((response) => response),
             catchError((e) => of(e.error.message))
         );

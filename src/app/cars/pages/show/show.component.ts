@@ -39,9 +39,7 @@ export class ShowComponent implements OnInit {
 
         if (this.user) {
             this.rolesService
-                .getRolesByRelatedUrl(
-                    this.user.relationships.roles.links.related
-                )
+                .getRolesByRelatedUrl(this.user.id)
                 .subscribe((response) => {
                     this.roles = response.data;
 
